@@ -57,8 +57,8 @@ const config: Config = {
       copyright: `© ${new Date().getFullYear()} AM Corporation · Internal Engineering Documentation`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismThemes.duotoneLight,
+      darkTheme: prismThemes.duotoneDark,
       additionalLanguages: ['bash'],
     },
   } satisfies Preset.ThemeConfig,

@@ -57,7 +57,7 @@ export default function FullscreenControl(): ReactNode {
             title="전체화면으로 보기"
             type="button">
             <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
+              <path d="m9 9-6-6m0 0v5m0-5h5M15 9l6-6m0 0h-5m5 0v5M9 15l-6 6m0 0h5m-5 0v-5M15 15l6 6m0 0v-5m0 5h-5" />
             </svg>
           </button>,
           navbarHost,

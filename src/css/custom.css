@@ -21,7 +21,8 @@
   --doc-border: #dedbd3;
   --doc-muted: #66706c;
   --doc-soft: #f0eee8;
-  --doc-code-bg: #162421;
+  --yaml-key-color: #896724;
+  --yaml-value-color: #746f66;
   --manual-card-border: #cfd6d2;
   --manual-card-background: #f3f6f3;
 }
@@ -43,7 +44,8 @@
   --doc-border: #34413d;
   --doc-muted: #9daba6;
   --doc-soft: #1d2825;
-  --doc-code-bg: #0a100f;
+  --yaml-key-color: #c4b9fe;
+  --yaml-value-color: #aaa4b8;
   --manual-card-border: #3b4b46;
   --manual-card-background: #192522;
 }
@@ -104,7 +106,7 @@ body { font-feature-settings: "kern" 1; -webkit-font-smoothing: antialiased; }
 }
 .theme-doc-markdown code { border: 1px solid var(--doc-border); border-radius: 3px; font-weight: 550; padding: .08rem .32rem; }
 .theme-doc-markdown pre {
-  background: var(--doc-code-bg) !important;
+  background: var(--prism-background-color) !important;
   border: 1px solid var(--doc-border);
   border-radius: 5px;
   box-shadow: none;
@@ -112,6 +114,14 @@ body { font-feature-settings: "kern" 1; -webkit-font-smoothing: antialiased; }
 }
 .theme-code-block { margin: 1.45rem 0; }
 .theme-code-block pre code { border: 0; padding: 0; }
+
+/* Duotone uses the same accent for YAML keys and strings by default. */
+.language-yaml .token-line { color: var(--yaml-value-color) !important; }
+.language-yaml .token.key {
+  color: var(--yaml-key-color) !important;
+  font-weight: 650;
+}
+.language-yaml .token.string { color: var(--yaml-value-color) !important; }
 .theme-doc-markdown table { display: table; font-size: .9rem; margin: 1.5rem 0; width: 100%; }
 .theme-doc-markdown table th, .theme-doc-markdown table td {
   border-color: var(--doc-border);
