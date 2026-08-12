@@ -71,18 +71,42 @@ export default function SearchBar(): ReactNode {
       })
       .filter((result): result is SearchDocument & {score: number; terms: string[]} => result !== null);
     const merged = new Map<string, SearchResult>();
+    const documentsById = new Map(documents.map((document) => [document.id, document]));
 
     for (const result of [...fullTextResults, ...identifierResults]) {
-      const previous = merged.get(result.path);
-      if (!previous || result.score > previous.score) {
-        merged.set(result.path, result);
+      const resultWithId = result as SearchResult & {id?: string};
+      const source = resultWithId.id ? documentsById.get(resultWithId.id) : undefined;
+      const hydrated = source
+        ? {
+            ...source,
+            ...result,
+            title: result.title || source.title,
+            pageTitle: result.pageTitle || source.pageTitle,
+            path: result.path || source.path,
+            api: result.api || source.api,
+            action: result.action || source.action,
+            kind: result.kind || source.kind,
+          }
+        : result;
+      const resultKey = hydrated.path || resultWithId.id;
+
+      if (!resultKey) {
+        continue;
+      }
+      const previous = merged.get(resultKey);
+      if (!previous || hydrated.score > previous.score) {
+        merged.set(resultKey, hydrated);
       }
     }
 
-    return [...merged.values()].sort((left, right) => right.score - left.score).slice(0, 10);
+    return Array.from(merged.values())
+      .sort((left, right) => right.score - left.score)
+      .slice(0, 10);
   }, [documents, query, search]);
 
-  const open = focused && query.trim().length >= 2;
+  const normalizedQuery = normalizeQuery(query);
+  const hasSearchQuery = normalizedQuery.length >= 2;
+  const open = focused;
 
   const navigate = useCallback(
     (path: string) => {
@@ -142,30 +166,43 @@ export default function SearchBar(): ReactNode {
         placeholder="API, ACTION, 키워드 검색"
         ref={inputRef}
         role="combobox"
+        type="search"
         value={query}
       />
       {!focused && <kbd className={styles.shortcut}>Ctrl K</kbd>}
       {open && (
         <div className={styles.results} id="smart-search-results" role="listbox">
-          {results.length > 0 ? (
-            results.map((result, index) => (
-              <button
-                aria-selected={index === activeIndex}
-                className={`${styles.result} ${index === activeIndex ? styles.active : ''}`}
-                key={`${result.path}-${index}`}
-                onMouseDown={(event) => event.preventDefault()}
-                onMouseEnter={() => setActiveIndex(index)}
-                onClick={() => navigate(result.path)}
-                role="option"
-                type="button">
-                <span className={styles.resultTitle}>{result.title}</span>
-                <span className={styles.resultMeta}>
-                  {result.kind === 'api' ? 'API' : result.pageTitle}
-                </span>
-              </button>
-            ))
+          {!hasSearchQuery ? (
+            <div className={styles.empty}>두 글자 이상 입력하면 검색 결과가 표시됩니다.</div>
+          ) : results.length > 0 ? (
+            <>
+              <div className={styles.resultCount} role="status">
+                {results.length}개 결과
+              </div>
+              {results.map((result, index) => (
+                <button
+                  aria-selected={index === activeIndex}
+                  className={`${styles.result} ${index === activeIndex ? styles.active : ''}`}
+                  key={`${result.path}-${index}`}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onClick={() => navigate(result.path)}
+                  role="option"
+                  type="button">
+                  <span className={styles.resultTitle}>
+                    {result.title || result.api || result.action || result.path}
+                  </span>
+                  <span className={styles.resultMeta}>
+                    {result.kind === 'api' ? 'API' : result.pageTitle}
+                  </span>
+                </button>
+              ))}
+            </>
           ) : (
-            <div className={styles.empty}>일치하는 문서가 없습니다.</div>
+            <div className={styles.empty} role="status">
+              <strong>일치하는 문서가 없습니다.</strong>
+              <span>API 이름, ACTION 또는 본문 키워드로 다시 검색해 보세요.</span>
+            </div>
           )}
         </div>
       )}
