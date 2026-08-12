@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState, type ReactNode} from 'react';
 import {useHistory} from '@docusaurus/router';
-import useGlobalData from '@docusaurus/useGlobalData';
+import {usePluginData} from '@docusaurus/useGlobalData';
 import MiniSearch from 'minisearch';
 import type {SearchDocument} from '../../../plugins/localSmartSearch';
 import {scoreIdentifierMatch} from '../../search/identifierSearch';
@@ -31,18 +31,14 @@ function normalizeQuery(value: string): string {
   return value.trim().toLowerCase().replace(/[()…]/g, '').replace(/[_\-\s]+/g, ' ');
 }
 
-function getDocuments(globalData: ReturnType<typeof useGlobalData>): SearchDocument[] {
-  const plugin = globalData['local-smart-search']?.default as
-    | {documents?: SearchDocument[]}
-    | undefined;
-  return plugin?.documents ?? [];
-}
-
 export default function SearchBar(): ReactNode {
   const history = useHistory();
   const inputRef = useRef<HTMLInputElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
-  const documents = getDocuments(useGlobalData());
+  const pluginData = usePluginData('local-smart-search', 'default', {failfast: true}) as {
+    documents: SearchDocument[];
+  };
+  const documents = pluginData.documents;
   const [query, setQuery] = useState('');
   const [focused, setFocused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
