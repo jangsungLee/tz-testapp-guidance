@@ -46,6 +46,8 @@ jobs:
   deploy:
     name: Deploy GitHub Pages
     needs: build
+    env:
+      NODE_OPTIONS: --use-system-ca
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
