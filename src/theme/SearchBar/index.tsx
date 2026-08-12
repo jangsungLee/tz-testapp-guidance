@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState, type ReactNode} from 'react';
+import Link from '@docusaurus/Link';
 import {useHistory} from '@docusaurus/router';
 import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
 import {usePluginData} from '@docusaurus/useGlobalData';
@@ -182,22 +183,29 @@ export default function SearchBar(): ReactNode {
                 {results.length}개 결과
               </div>
               {results.map((result, index) => (
-                <button
+                <Link
                   aria-selected={index === activeIndex}
                   className={`${styles.result} ${index === activeIndex ? styles.active : ''}`}
                   key={`${result.path}-${index}`}
-                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => {
+                    setFocused(false);
+                    setQuery('');
+                  }}
+                  onMouseDown={(event) => {
+                    if (event.button === 0) {
+                      event.preventDefault();
+                    }
+                  }}
                   onMouseEnter={() => setActiveIndex(index)}
-                  onClick={() => navigate(result.path)}
                   role="option"
-                  type="button">
+                  to={result.path}>
                   <span className={styles.resultTitle}>
                     {result.title || result.api || result.action || result.path}
-                </span>
-                <span className={styles.resultMeta}>
-                  {result.kind === 'api' ? `${result.action.split(' ')[0]} · API` : result.pageTitle}
-                </span>
-                </button>
+                  </span>
+                  <span className={styles.resultMeta}>
+                    {result.kind === 'api' ? `${result.action.split(' ')[0]} · API` : result.pageTitle}
+                  </span>
+                </Link>
               ))}
             </>
           ) : (
