@@ -1,8 +1,0 @@
-{
-  "label": "결과 검증",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "EXPECT의 정확한 값 비교와 조건 기반 검증 방식을 설명합니다."
-  }
-}

@@ -1,9 +1,26 @@
 ---
 sidebar_position: 4
-title: Byte Array 검증
+title: Byte Array 입력과 검증
 ---
 
-# Byte Array 검증
+# Byte Array 입력과 검증
+
+Byte Array 입력은 각 byte를 YAML 배열의 원소로 작성합니다.
+
+```yaml
+- TC_ID: TC_AES_KEY_IMPORT_001
+  Title: Import AES Key
+  ACTS:
+    - ACTION: AES_KEY_BIN_IMPORT
+      PARAMS:
+        key_index: 0
+        key_bin: [0x01, 0x02, 0x03, 0x04]
+        key_bin_len: 4
+      EXPECT:
+        - ret_code: 0
+```
+
+실행 결과로 생성된 Byte Array는 multiline 조건식으로 길이와 내용을 검증할 수 있습니다.
 
 ```yaml
 - TC_ID: TC_KDF_BYTES_001
@@ -16,7 +33,7 @@ title: Byte Array 검증
         context: TEST_CONTEXT
         context_len: 12
         key_len: 32
-        mac: ""
+        mac: []
         mac_len: 0
       EXPECT:
         - ret_code: 0
@@ -35,4 +52,4 @@ title: Byte Array 검증
             }}
 ```
 
-이 조건은 byte 길이, 각 byte 범위, 전체가 `0`이 아닌지를 함께 검사합니다.
+입력 규칙은 [Byte Array 표기](../custom/byte-array.md), 출력 타입은 [조건식의 actual 타입](../custom/result-types.md)을 확인합니다.

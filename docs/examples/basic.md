@@ -18,7 +18,7 @@ KDF API를 실행하고 return code를 정확한 값으로 검증하는 예제�
         context: TEST_CONTEXT
         context_len: 12
         key_len: 32
-        mac: ""
+        mac: []
         mac_len: 0
       EXPECT:
         - ret_code: 0

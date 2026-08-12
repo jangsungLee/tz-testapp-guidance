@@ -3,6 +3,7 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "Test Case, ACTS, PARAMS, ARTIFACTS의 기본 구조를 설명합니다."
+    "slug": "/yaml",
+    "description": "Test Case, ACTS, ACTION, PARAMS, EXPECT와 ARTIFACTS를 이용하여 테스트를 작성하는 기본 구조를 설명합니다."
   }
 }

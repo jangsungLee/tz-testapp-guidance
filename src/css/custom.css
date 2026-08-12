@@ -143,28 +143,14 @@ body { font-feature-settings: "kern" 1; -webkit-font-smoothing: antialiased; }
   padding-top: 1.35rem;
 }
 .theme-doc-markdown h3 { font-size: 1.08rem; font-weight: 720; margin-top: 2rem; }
-.theme-doc-markdown h2:has(+ .api-action) {
-  font-family: var(--ifm-font-family-monospace);
-  font-size: 1.28rem;
-  letter-spacing: -.025em;
-}
-.api-action {
-  align-items: baseline;
-  display: flex;
-  gap: .65rem;
-  margin: -.55rem 0 1.2rem;
-}
-.api-action span {
-  color: var(--doc-muted);
-  font-size: .66rem;
-  font-weight: 760;
-  letter-spacing: .1em;
-}
-.theme-doc-markdown .api-action code {
+.theme-doc-markdown h2 > code {
   background: transparent;
   border: 0;
-  color: var(--ifm-color-primary);
-  font-size: .79rem;
+  color: var(--ifm-heading-color);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 1.28rem;
+  font-weight: 730;
+  letter-spacing: -.025em;
   padding: 0;
 }
 .theme-doc-markdown p, .theme-doc-markdown li { word-break: keep-all; }

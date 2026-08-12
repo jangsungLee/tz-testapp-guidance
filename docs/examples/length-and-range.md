@@ -16,7 +16,7 @@ title: 길이와 범위 검증
         context: TEST_CONTEXT
         context_len: 12
         key_len: 32
-        mac: ""
+        mac: []
         mac_len: 0
       EXPECT:
         - ret_code: 0

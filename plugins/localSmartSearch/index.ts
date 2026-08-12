@@ -62,7 +62,7 @@ async function parseDocument(filePath: string, docsDir: string): Promise<SearchD
   const source = await fs.readFile(filePath, 'utf8');
   const parsed = matter(source);
   const tree = unified().use(remarkParse).use(remarkGfm).use(remarkMdx).parse(parsed.content) as AstNode;
-    const children = tree.children ?? [];
+  const children = tree.children ?? [];
   const firstHeading = children.find((node) => node.type === 'heading' && node.depth === 1);
   const pageTitle = String(parsed.data.title ?? (firstHeading ? getText(firstHeading) : path.basename(filePath)));
   const documentPath = getDocumentPath(filePath, docsDir, parsed.data.slug);
@@ -75,9 +75,14 @@ async function parseDocument(filePath: string, docsDir: string): Promise<SearchD
 
   const flush = () => {
     const content = sectionNodes.map(getText).join(' ').replace(/\s+/g, ' ').trim();
-    const apiMatch = sectionTitle.match(/^([a-z][a-z0-9_]+)\s*\((?:…|\.\.\.)\)$/i);
-    const api = apiMatch?.[1] ?? '';
-    const action = api ? content.match(/\bACTION:\s*([A-Z][A-Z0-9_]*)/)?.[1] ?? '' : '';
+    const actionHeadingMatch = sectionTitle.match(/^([A-Z][A-Z0-9_]*)$/);
+    const apiUsageMatch = content.match(/사용 API:\s*([a-z][a-z0-9_]+)\s*\(\)/i);
+    const legacyApiMatch = sectionTitle.match(/^([a-z][a-z0-9_]+)\s*\((?:…|\.\.\.)\)$/i);
+    const api = apiUsageMatch?.[1] ?? legacyApiMatch?.[1] ?? '';
+    const action =
+      actionHeadingMatch?.[1] ??
+      (api ? content.match(/\bACTION:\s*([A-Z][A-Z0-9_]*)/)?.[1] ?? '' : '');
+    const isApiSection = Boolean(api && action);
     const apiTerms = api ? [...splitIdentifier(api), api.replace(/_/g, '')].join(' ') : '';
     const actionTerms = action
       ? [...splitIdentifier(action), action.replace(/_/g, '').toLowerCase()].join(' ')
@@ -86,13 +91,13 @@ async function parseDocument(filePath: string, docsDir: string): Promise<SearchD
     if (content || sectionTitle) {
       documents.push({
         id: `${documentPath}::${sectionNumber}`,
-        title: sectionTitle,
+        title: isApiSection ? `${api}()` : sectionTitle,
         pageTitle,
         path: sectionPath,
         api: `${api} ${apiTerms}`.trim(),
         action: `${action} ${actionTerms}`.trim(),
         content,
-        kind: api ? 'api' : 'document',
+        kind: isApiSection ? 'api' : 'document',
       });
       sectionNumber += 1;
     }

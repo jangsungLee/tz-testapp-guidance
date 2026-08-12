@@ -191,10 +191,10 @@ export default function SearchBar(): ReactNode {
                   type="button">
                   <span className={styles.resultTitle}>
                     {result.title || result.api || result.action || result.path}
-                  </span>
-                  <span className={styles.resultMeta}>
-                    {result.kind === 'api' ? 'API' : result.pageTitle}
-                  </span>
+                </span>
+                <span className={styles.resultMeta}>
+                  {result.kind === 'api' ? `${result.action.split(' ')[0]} · API` : result.pageTitle}
+                </span>
                 </button>
               ))}
             </>

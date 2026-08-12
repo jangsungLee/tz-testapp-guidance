@@ -7,13 +7,11 @@ title: Common
 
 TEE 버전 등 공통 동작의 입력과 출력 형식을 설명합니다.
 
-각 Test Case는 ACTION 하나만 포함합니다. 값을 채울 때 각 필드 오른쪽의 `required`, `type`, 길이와 범위 메타데이터를 함께 확인하세요.
+각 Test Case는 ACTION 하나만 포함합니다. 필드별 타입, 필수 여부와 길이 제한은 오른쪽 주석을 확인하세요. Byte Array 작성법과 출력 참조는 [Custom 기능](../custom/)을 참고하세요.
 
-`HexArray`는 프로젝트 커스텀 입력 형식입니다. 표기와 변환 규칙은 [PARAMS의 HexArray 입력](../yaml/params.md#hexarray-입력)을 확인하세요.
+## `COMMON_OP_GET_VERSION`
 
-## am_tee_get_version(…)
-
-<div className="api-action"><span>YAML ACTION</span><code>COMMON_OP_GET_VERSION</code></div>
+사용 API: `am_tee_get_version()`
 
 ```yaml
 - TC_ID: TC_COMMON_OP_GET_VERSION_TEMPLATE
