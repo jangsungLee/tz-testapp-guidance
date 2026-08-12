@@ -76,7 +76,6 @@ GitHub Pages 배포 주소를 Confluence에 붙여 넣고 임베드로 표시합
 - 우측 상단 버튼은 전체화면 상태에 따라 아이콘이 바뀌며, 같은 버튼으로 진입하고 종료합니다.
 - `Esc` 키로도 종료할 수 있습니다.
 - Confluence가 전체화면 권한을 차단하면 새 탭 링크를 표시합니다.
-- Pages 배포가 끝나면 Actions 실행 요약에 Unix epoch가 붙은 Confluence 임베드 URL을 출력합니다. Confluence 캐시를 갱신할 때 이 URL로 교체합니다.
 
 ## 주요 명령
 
