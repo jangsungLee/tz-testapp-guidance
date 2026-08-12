@@ -5,7 +5,7 @@ title: EQUAL 우선순위
 
 # EQUAL 우선순위
 
-동일한 출력 Key에 일반 기대값과 조건 표현식이 함께 있으면 EQUAL이 우선합니다.
+동일한 출력 Key에 일반 기대값과 조건 표현식이 함께 있으면 **EQUAL이 우선**합니다.
 
 ```yaml
 - TC_ID: TC_KDF_EQUAL_PRIORITY_001
@@ -32,4 +32,4 @@ title: EQUAL 우선순위
             }}
 ```
 
-조건식은 실행되지 않으며 직접 비교 결과가 사용됩니다. 자세한 내용은 [EQUAL 우선순위](../custom/validation-priority.md)를 확인합니다.
+**조건식은 실행되지 않으며 직접 비교 결과가 사용됩니다.** 자세한 내용은 [EQUAL 우선순위](../custom/validation-priority.md)를 확인합니다.

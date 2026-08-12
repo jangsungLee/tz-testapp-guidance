@@ -11,7 +11,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_KEY_GEN`
 
-사용 API: `am_aes256_key_gen()`
+**사용 API:** `am_aes256_key_gen()`
 
 ```yaml
 - TC_ID: TC_AES256_KEY_GEN_TEMPLATE
@@ -27,7 +27,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 ```
 ## `AES256_KEY_IMPORT`
 
-사용 API: `am_aes256_key_import()`
+**사용 API:** `am_aes256_key_import()`
 
 ```yaml
 - TC_ID: TC_AES256_KEY_IMPORT_TEMPLATE
@@ -45,7 +45,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES_KEY_BIN_IMPORT`
 
-사용 API: `am_aes256_key_bin_import()`
+**사용 API:** `am_aes256_key_bin_import()`
 
 ```yaml
 - TC_ID: TC_AES_KEY_BIN_IMPORT_TEMPLATE
@@ -64,7 +64,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_ECB_ENC`
 
-사용 API: `am_aes256_ecb_enc()`
+**사용 API:** `am_aes256_ecb_enc()`
 
 ```yaml
 - TC_ID: TC_AES256_ECB_ENC_TEMPLATE
@@ -90,7 +90,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_ECB_DEC`
 
-사용 API: `am_aes256_ecb_dec()`
+**사용 API:** `am_aes256_ecb_dec()`
 
 ```yaml
 - TC_ID: TC_AES256_ECB_DEC_TEMPLATE
@@ -116,7 +116,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_CBC_ENC`
 
-사용 API: `am_aes256_cbc_enc()`
+**사용 API:** `am_aes256_cbc_enc()`
 
 ```yaml
 - TC_ID: TC_AES256_CBC_ENC_TEMPLATE
@@ -144,7 +144,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES_CBC_ENC_WITH_KEY_PERF`
 
-사용 API: `am_aes256_cbc_enc_with_key_perf()`
+**사용 API:** `am_aes256_cbc_enc_with_key_perf()`
 
 ```yaml
 - TC_ID: TC_AES_CBC_ENC_WITH_KEY_PERF_TEMPLATE
@@ -173,7 +173,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_CBC_DEC`
 
-사용 API: `am_aes256_cbc_dec()`
+**사용 API:** `am_aes256_cbc_dec()`
 
 ```yaml
 - TC_ID: TC_AES256_CBC_DEC_TEMPLATE
@@ -201,7 +201,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_CTR_ENC`
 
-사용 API: `am_aes256_ctr_enc()`
+**사용 API:** `am_aes256_ctr_enc()`
 
 ```yaml
 - TC_ID: TC_AES256_CTR_ENC_TEMPLATE
@@ -228,7 +228,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_CTR_DEC`
 
-사용 API: `am_aes256_ctr_dec()`
+**사용 API:** `am_aes256_ctr_dec()`
 
 ```yaml
 - TC_ID: TC_AES256_CTR_DEC_TEMPLATE
@@ -255,7 +255,7 @@ AES 키와 ECB, CBC, CTR 암·복호화 동작을 설명합니다.
 
 ## `AES256_KEY_CHECK_EXIST`
 
-사용 API: `am_aes256_key_check_exist()`
+**사용 API:** `am_aes256_key_check_exist()`
 
 ```yaml
 - TC_ID: TC_AES256_KEY_CHECK_EXIST_TEMPLATE

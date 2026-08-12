@@ -11,7 +11,7 @@ TEE 버전 등 공통 동작의 입력과 출력 형식을 설명합니다.
 
 ## `COMMON_OP_GET_VERSION`
 
-사용 API: `am_tee_get_version()`
+**사용 API:** `am_tee_get_version()`
 
 ```yaml
 - TC_ID: TC_COMMON_OP_GET_VERSION_TEMPLATE

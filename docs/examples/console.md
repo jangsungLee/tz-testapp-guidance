@@ -5,7 +5,7 @@ title: console 출력
 
 # console 출력
 
-조건 평가 중 실제 출력의 형태를 확인해야 할 때 지원되는 console method를 사용할 수 있습니다.
+조건 평가 중 실제 출력의 형태를 확인해야 할 때 **지원되는 console method**를 사용할 수 있습니다.
 
 ```yaml
 - TC_ID: TC_KDF_CONSOLE_001

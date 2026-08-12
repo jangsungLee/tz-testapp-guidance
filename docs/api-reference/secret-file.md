@@ -11,7 +11,7 @@ Secure File의 열기, 읽기, 쓰기, 탐색, 닫기, 삭제 동작을 설명�
 
 ## `SECRET_FILE_OPEN`
 
-사용 API: `am_sfs_open()`
+**사용 API:** `am_sfs_open()`
 
 ```yaml
 - TC_ID: TC_SECRET_FILE_OPEN_TEMPLATE
@@ -31,7 +31,7 @@ Secure File의 열기, 읽기, 쓰기, 탐색, 닫기, 삭제 동작을 설명�
 ```
 ## `SECRET_FILE_READ`
 
-사용 API: `am_sfs_read()`
+**사용 API:** `am_sfs_read()`
 
 ```yaml
 - TC_ID: TC_SECRET_FILE_READ_TEMPLATE
@@ -54,7 +54,7 @@ Secure File의 열기, 읽기, 쓰기, 탐색, 닫기, 삭제 동작을 설명�
 
 ## `SECRET_FILE_WRITE`
 
-사용 API: `am_sfs_write()`
+**사용 API:** `am_sfs_write()`
 
 ```yaml
 - TC_ID: TC_SECRET_FILE_WRITE_TEMPLATE
@@ -73,7 +73,7 @@ Secure File의 열기, 읽기, 쓰기, 탐색, 닫기, 삭제 동작을 설명�
 
 ## `SECRET_FILE_SEEK`
 
-사용 API: `am_sfs_seek()`
+**사용 API:** `am_sfs_seek()`
 
 ```yaml
 - TC_ID: TC_SECRET_FILE_SEEK_TEMPLATE
@@ -92,7 +92,7 @@ Secure File의 열기, 읽기, 쓰기, 탐색, 닫기, 삭제 동작을 설명�
 
 ## `SECRET_FILE_CLOSE`
 
-사용 API: `am_sfs_close()`
+**사용 API:** `am_sfs_close()`
 
 ```yaml
 - TC_ID: TC_SECRET_FILE_CLOSE_TEMPLATE
@@ -109,7 +109,7 @@ Secure File의 열기, 읽기, 쓰기, 탐색, 닫기, 삭제 동작을 설명�
 
 ## `SECRET_FILE_REMOVE`
 
-사용 API: `am_sfs_rm()`
+**사용 API:** `am_sfs_rm()`
 
 ```yaml
 - TC_ID: TC_SECRET_FILE_REMOVE_TEMPLATE

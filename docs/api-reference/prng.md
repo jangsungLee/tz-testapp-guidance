@@ -11,7 +11,7 @@ title: PRNG
 
 ## `PRNG_GETDATA`
 
-사용 API: `am_prng_getdata()`
+**사용 API:** `am_prng_getdata()`
 
 ```yaml
 - TC_ID: TC_PRNG_GETDATA_TEMPLATE

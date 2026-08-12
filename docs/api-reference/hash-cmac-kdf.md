@@ -11,7 +11,7 @@ Hash, HMAC, CMAC, KDF 동작을 설명합니다.
 
 ## `HASH_SHA256`
 
-사용 API: `am_hash_sha256()`
+**사용 API:** `am_hash_sha256()`
 
 ```yaml
 - TC_ID: TC_HASH_SHA256_TEMPLATE
@@ -34,7 +34,7 @@ Hash, HMAC, CMAC, KDF 동작을 설명합니다.
 ```
 ## `HMAC_AES256_SHA256`
 
-사용 API: `am_hmac_aes256_sha256()`
+**사용 API:** `am_hmac_aes256_sha256()`
 
 ```yaml
 - TC_ID: TC_HMAC_AES256_SHA256_TEMPLATE
@@ -59,7 +59,7 @@ Hash, HMAC, CMAC, KDF 동작을 설명합니다.
 
 ## `CMAC_AES128_SHA256`
 
-사용 API: `am_cmac_aes128()`
+**사용 API:** `am_cmac_aes128()`
 
 ```yaml
 - TC_ID: TC_CMAC_AES128_SHA256_TEMPLATE
@@ -85,7 +85,7 @@ Hash, HMAC, CMAC, KDF 동작을 설명합니다.
 
 ## `CMAC_AES256_SHA256`
 
-사용 API: `am_cmac_aes256_sha256()`
+**사용 API:** `am_cmac_aes256_sha256()`
 
 ```yaml
 - TC_ID: TC_CMAC_AES256_SHA256_TEMPLATE
@@ -110,7 +110,7 @@ Hash, HMAC, CMAC, KDF 동작을 설명합니다.
 
 ## `KDF_GET_KEY`
 
-사용 API: `am_kdf_get_key()`
+**사용 API:** `am_kdf_get_key()`
 
 ```yaml
 - TC_ID: TC_KDF_GET_KEY_TEMPLATE

@@ -5,7 +5,7 @@ title: Byte Array 입력과 검증
 
 # Byte Array 입력과 검증
 
-Byte Array 입력은 각 byte를 YAML 배열의 원소로 작성합니다.
+Byte Array 입력은 **각 byte를 YAML 배열의 원소로 작성**합니다.
 
 ```yaml
 - TC_ID: TC_AES_KEY_IMPORT_001
@@ -20,7 +20,7 @@ Byte Array 입력은 각 byte를 YAML 배열의 원소로 작성합니다.
         - ret_code: 0
 ```
 
-실행 결과로 생성된 Byte Array는 multiline 조건식으로 길이와 내용을 검증할 수 있습니다.
+실행 결과로 생성된 Byte Array는 multiline 조건식으로 **길이와 내용을 검증**할 수 있습니다.
 
 ```yaml
 - TC_ID: TC_KDF_BYTES_001

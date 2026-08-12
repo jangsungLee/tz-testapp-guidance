@@ -11,7 +11,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 
 ## `RSA_KEY_GEN`
 
-사용 API: `am_rsa_key_gen()`
+**사용 API:** `am_rsa_key_gen()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_GEN_TEMPLATE
@@ -29,7 +29,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 ```
 ## `RSA_KEY_IMPORT`
 
-사용 API: `am_rsa_key_import()`
+**사용 API:** `am_rsa_key_import()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_IMPORT_TEMPLATE
@@ -47,7 +47,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 
 ## `RSA_KEY_SIGN`
 
-사용 API: `am_rsa_key_sign()`
+**사용 API:** `am_rsa_key_sign()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_SIGN_TEMPLATE
@@ -72,7 +72,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 
 ## `RSA_KEY_VERIFY`
 
-사용 API: `am_rsa_key_verify()`
+**사용 API:** `am_rsa_key_verify()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_VERIFY_TEMPLATE
@@ -93,7 +93,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 
 ## `RSA_KEY_ENC`
 
-사용 API: `am_rsa_key_enc()`
+**사용 API:** `am_rsa_key_enc()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_ENC_TEMPLATE
@@ -118,7 +118,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 
 ## `RSA_KEY_DEC`
 
-사용 API: `am_rsa_key_dec()`
+**사용 API:** `am_rsa_key_dec()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_DEC_TEMPLATE
@@ -143,7 +143,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 
 ## `RSA_KEY_PUBKEY_EXPORT`
 
-사용 API: `am_rsa_pubkey_export()`
+**사용 API:** `am_rsa_pubkey_export()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_PUBKEY_EXPORT_TEMPLATE
@@ -161,7 +161,7 @@ RSA 키와 서명, 검증, 암호화, 복호화 동작을 설명합니다.
 
 ## `RSA_KEY_CHECK_EXIST`
 
-사용 API: `am_rsa_key_check_exist()`
+**사용 API:** `am_rsa_key_check_exist()`
 
 ```yaml
 - TC_ID: TC_RSA_KEY_CHECK_EXIST_TEMPLATE

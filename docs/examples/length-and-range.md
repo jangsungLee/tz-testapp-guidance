@@ -28,4 +28,4 @@ title: 길이와 범위 검증
             }}
 ```
 
-길이는 byte 단위이고 전체 값의 범위는 unsigned BigInt 기준입니다.
+**길이는 byte 단위**이고 전체 값의 범위는 **unsigned BigInt 기준**입니다.

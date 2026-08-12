@@ -34,4 +34,4 @@ title: 기본 구조
 | `EXPECT` | ACTION의 실제 출력이 만족해야 하는 기대값 또는 조건입니다. |
 | `ARTIFACTS` | ACTION 출력을 이후 ACTION에서 참조할 이름으로 저장합니다. |
 
-`PARAMS`, `EXPECT`, `ARTIFACTS`의 필수 여부는 ACTION마다 다릅니다. 실제 Key와 제한은 [API 레퍼런스](../api-reference/)를 확인해야 합니다.
+**`PARAMS`, `EXPECT`, `ARTIFACTS`의 필수 여부는 ACTION마다 다릅니다.** 실제 Key와 제한은 [API 레퍼런스](../api-reference/)를 확인해야 합니다.

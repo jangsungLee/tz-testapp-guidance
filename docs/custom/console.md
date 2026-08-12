@@ -5,7 +5,7 @@ title: 조건식의 console 출력
 
 # 조건식의 console 출력
 
-조건 표현식을 확인하거나 디버깅할 때 일부 console method를 사용할 수 있습니다. 출력에는 `[JS::console.<method>]` prefix가 붙어 일반 프로그램 로그와 구분됩니다.
+조건 표현식을 확인하거나 디버깅할 때 일부 console method를 사용할 수 있습니다. 출력에는 **`[JS::console.<method>]` prefix**가 붙어 일반 프로그램 로그와 구분됩니다.
 
 지원 method는 다음과 같습니다.
 
@@ -36,7 +36,7 @@ EXPECT:
 - `info`, `table`, `time`, `timeEnd`, `timeLog`, `timeStamp`
 - `trace`, `warn`, `profile`, `profileEnd`
 
-미구현 method 호출 시 조건식 전체를 중단하지 않고 warning을 출력합니다.
+미구현 method 호출 시 **조건식 전체를 중단하지 않고 warning을 출력**합니다.
 
 ```yaml
 EXPECT:
@@ -53,4 +53,4 @@ EXPECT:
 [WARN][am_tz_diag] [JS::console.warn] console.warn() is not implemented yet.
 ```
 
-외부 library와 module은 지원하지 않습니다.
+**외부 library와 module은 지원하지 않습니다.**

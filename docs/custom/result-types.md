@@ -5,7 +5,7 @@ title: 조건식의 actual 타입
 
 # 조건식의 actual 타입
 
-조건 표현식의 `actual`에는 EXPECT의 출력 Key에 대응하는 실제 값이 전달됩니다. 값의 형태는 handler가 기록한 출력 타입에 따라 달라집니다.
+조건 표현식의 `actual`에는 EXPECT의 출력 Key에 대응하는 실제 값이 전달됩니다. **값의 형태는 handler가 기록한 출력 타입에 따라 달라집니다.**
 
 | 출력 종류 | actual 형태 | 예제 |
 | --- | --- | --- |
@@ -51,9 +51,9 @@ EXPECT:
   - key_buf: "${{ actual => actual.value !== 0n }}"
 ```
 
-- `actual.hex`는 표시와 문자열 비교를 위한 값입니다.
-- `actual.length`는 hex 문자열 문자 수가 아니라 실제 byte 수입니다.
-- BigInt와 Number는 직접 섞어서 연산할 수 없습니다.
-- BigInt literal에는 `1n`, `32n`, `256n`처럼 `n` suffix를 사용합니다.
-- `actual.value + 1`은 잘못된 표현입니다.
-- `actual.value + 1n`은 올바른 표현입니다.
+- **hex 용도:** `actual.hex`는 표시와 문자열 비교를 위한 값입니다.
+- **길이 단위:** `actual.length`는 hex 문자열 문자 수가 아니라 실제 byte 수입니다.
+- **타입 혼합:** BigInt와 Number는 직접 섞어서 연산할 수 없습니다.
+- **BigInt literal:** `1n`, `32n`, `256n`처럼 `n` suffix를 사용합니다.
+- **잘못된 연산:** `actual.value + 1`
+- **올바른 연산:** `actual.value + 1n`
