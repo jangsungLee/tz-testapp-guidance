@@ -4,6 +4,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "start:search": "npm run build && npm run serve",
     "build": "docusaurus build",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
@@ -16,6 +17,9 @@
     "@docusaurus/preset-classic": "3.10.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.1",
+    "github-slugger": "^2.0.0",
+    "gray-matter": "^4.0.3",
+    "minisearch": "^7.2.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

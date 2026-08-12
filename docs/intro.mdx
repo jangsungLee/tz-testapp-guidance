@@ -2,7 +2,7 @@
 id: intro
 slug: /
 sidebar_position: 1
-title: 시작하기
+title: Introduction
 description: YAML을 이용하여 API 테스트를 구성하고 결과를 검증하는 방법을 소개합니다.
 hide_title: true
 ---
@@ -14,28 +14,31 @@ import Link from '@docusaurus/Link';
   <div className="manual-intro__eyebrow">AM TZ DIAG · YAML REFERENCE</div>
   <h1>API 테스트를<br />YAML로 설계합니다</h1>
   <div className="manual-intro__lead">
-    입력과 실행 순서, 기대 결과를 하나의 파일에 정의하고 반복 가능한 테스트 시나리오로 관리하는 방법을 설명합니다.
+    하나의 YAML 파일에 여러 Test Case의 입력, 실행 순서와 예상 결과를 정의하고 반복 가능한 시나리오로 관리합니다.
   </div>
 </header>
 
 <div className="manual-scope">
-  <div className="manual-scope__item"><span className="manual-scope__number">01</span><strong>동작 구성</strong><span>API와 실행 순서 정의</span></div>
-  <div className="manual-scope__item"><span className="manual-scope__number">02</span><strong>입력 전달</strong><span>PARAMS로 값 연결</span></div>
-  <div className="manual-scope__item"><span className="manual-scope__number">03</span><strong>결과 검증</strong><span>값 또는 조건으로 판정</span></div>
-  <div className="manual-scope__item"><span className="manual-scope__number">04</span><strong>출력 재사용</strong><span>동작 간 결과 전달</span></div>
+  <div className="manual-scope__item"><span className="manual-scope__number">01</span><strong>동작 구성</strong><span>여러 API와 실행 순서 정의</span></div>
+  <div className="manual-scope__item"><span className="manual-scope__number">02</span><strong>입력 전달</strong><span>PARAMS로 API 입력 연결</span></div>
+  <div className="manual-scope__item"><span className="manual-scope__number">03</span><strong>결과 검증</strong><span>값 또는 조건으로 출력 판정</span></div>
+  <div className="manual-scope__item"><span className="manual-scope__number">04</span><strong>출력 재사용</strong><span>동작 간 출력값 전달</span></div>
 </div>
 
 ## 기본 실행 흐름
 
-1. `ACTS`에 정의한 동작을 위에서 아래 순서로 실행합니다.
+1. `ACTS`에 정의된 동작을 순서대로 실행합니다.
 2. `PARAMS` 값을 API 입력으로 전달합니다.
 3. 실제 출력값을 `EXPECT`와 비교합니다.
 4. 필요한 출력은 `ARTIFACTS`에 지정한 이름으로 저장합니다.
-5. 저장한 출력은 이후 동작의 `PARAMS`에서 다시 사용합니다.
+5. 저장한 출력은 이후 동작의 `PARAMS`에서 다시 사용할 수 있습니다.
 
-## 결과 검증 방식
+## 결과를 검증하는 두 가지 방법
 
-<ValidationMode title="정확한 값 비교" summary="결과를 미리 알고 있다면 실제 값과 기대값이 같은지 확인합니다.">
+<ValidationMode
+  title="정확한 값 비교"
+  summary="결과를 미리 알고 있을 때 실제 값과 기대값이 같은지 확인합니다."
+>
 
 ```yaml
 EXPECT:
@@ -44,18 +47,23 @@ EXPECT:
 
 </ValidationMode>
 
-<ValidationMode title="조건 기반 검증" summary="정확한 결과를 미리 알 수 없지만 반드시 만족해야 하는 조건이 있을 때 사용합니다.">
+<ValidationMode
+  title="조건 기반 검증"
+  summary="정확한 결과를 미리 알 수 없지만 반드시 만족해야 할 조건이 있을 때 사용합니다."
+>
 
 ```yaml
 EXPECT:
   - key_buf: "${{ actual => actual.value !== 0n }}"
 ```
 
-위 예제는 생성된 key의 정확한 값 대신 전체 값이 `0`이 아닌지 확인합니다.
+위 예제는 생성된 key의 정확한 값 대신, 전체 값이 `0`이 아니라는 조건을 확인합니다.
 
 </ValidationMode>
 
-조건 기반 검증은 buffer 길이, 숫자 범위, byte 값처럼 하나의 고정값으로 표현하기 어려운 요구사항에 적합합니다. 동일한 출력에 정확한 값과 조건 표현식을 함께 작성하면 정확한 값 비교가 우선합니다.
+조건 기반 검증은 buffer 길이, 숫자 범위, byte 값, 출력 형식처럼 정확한 값 하나로
+표현하기 어려운 요구사항에 적합합니다. 동일한 출력에 정확한 값과 조건 표현식을 함께
+작성하면 정확한 값 비교가 우선합니다.
 
 ## 출력값 재사용
 
@@ -73,12 +81,14 @@ PARAMS:
   fd: "{{ out.secure_file_fd }}"
 ```
 
-이를 이용하면 파일 열기, 읽기, 쓰기, 닫기처럼 서로 연결된 API 동작을 하나의 Test Case로 구성할 수 있습니다.
+이를 이용하면 파일 열기, 쓰기, 읽기, 닫기처럼 서로 연결된 API 동작을 하나의 Test
+Case로 구성할 수 있습니다.
 
-## 다음 문서
+## 다음 단계
 
 <nav className="manual-next" aria-label="추천 문서">
   <Link to="/yaml/basic-structure"><strong>YAML 기본 구조</strong><span>처음 작성하는 경우</span></Link>
+  <Link to="/api-reference"><strong>API 레퍼런스</strong><span>ACTION별 입력 타입과 제약</span></Link>
   <Link to="/validation/expect"><strong>EXPECT 개요</strong><span>결과 검증 방식 이해</span></Link>
   <Link to="/validation/conditional"><strong>조건 기반 검증</strong><span>동적인 출력 검사</span></Link>
   <Link to="/examples/basic"><strong>기본 예제</strong><span>바로 실행할 YAML</span></Link>

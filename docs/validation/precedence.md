@@ -10,7 +10,7 @@ title: EQUAL 우선순위
 
 ```yaml
 EXPECT:
-  - key_buf: "0x3e23770dd631e799"
+  - key_buf: [0x3E, 0x23, 0x77, 0x0D, 0xD6, 0x31, 0xE7, 0x99]
   - key_buf: |
       ${{
         actual => {

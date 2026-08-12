@@ -38,6 +38,7 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
+  plugins: ['./plugins/localSmartSearch/index.ts'],
   themeConfig: {
     colorMode: {defaultMode: 'light', respectPrefersColorScheme: true},
     navbar: {

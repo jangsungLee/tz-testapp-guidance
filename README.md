@@ -16,6 +16,8 @@ npm run start
 
 기본 주소는 `http://localhost:3000`입니다.
 
+`npm start`는 검색을 포함한 개발 서버로 실행되며 Markdown 변경 시 검색 데이터도 함께 갱신됩니다. 실제 프로덕션 빌드 결과까지 확인하려면 `npm run start:search`를 사용합니다. 상단 검색창 또는 `Ctrl/Cmd + K`로 문서 제목, 본문, API 함수명과 YAML ACTION을 검색할 수 있습니다. 함수명은 snake_case, CamelCase, 공백 조합과 `atgv` 같은 CamelHumps 약어 검색을 지원합니다.
+
 ## 검사와 빌드
 
 ```bash
@@ -87,6 +89,7 @@ GitHub Pages 배포 주소를 Confluence에 붙여 넣고 임베드로 표시합
 | `npm run build` | 일반 프로덕션 빌드 |
 | `npm run build:pages` | GitHub Pages 빌드 |
 | `npm run serve` | 빌드 결과 로컬 제공 |
+| `npm run start:search` | 검색 인덱스 생성 후 빌드 결과 로컬 제공 |
 
 ## 디렉터리
 
