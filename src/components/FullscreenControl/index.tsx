@@ -2,13 +2,7 @@ import {useEffect, useState, type ReactNode} from 'react';
 import {createPortal} from 'react-dom';
 import styles from './styles.module.css';
 
-type FullscreenControlProps = {
-  showTrigger: boolean;
-};
-
-export default function FullscreenControl({
-  showTrigger,
-}: FullscreenControlProps): ReactNode {
+export default function FullscreenControl(): ReactNode {
   const [navbarHost, setNavbarHost] = useState<HTMLDivElement | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [error, setError] = useState(false);
@@ -54,7 +48,7 @@ export default function FullscreenControl({
 
   return (
     <>
-      {showTrigger && navbarHost &&
+      {navbarHost &&
         createPortal(
           <button
             aria-label="전체화면으로 보기"

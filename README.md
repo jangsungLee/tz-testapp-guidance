@@ -59,7 +59,19 @@ DOCUSAURUS_BASE_URL=/
 
 ## Confluence iframe
 
-GitHub Pages 배포 주소를 Confluence의 iFrame 매크로에 지정할 수 있습니다. 시작 페이지의 상단 전체화면 버튼은 브라우저 Fullscreen API를 사용합니다.
+GitHub Pages 배포 주소를 Confluence에 붙여 넣고 임베드로 표시합니다. iFrame 매크로를 직접 설정할 수 있다면 전체화면 권한을 함께 허용합니다.
+
+```html
+<iframe
+  src="https://<owner>.github.io/<repository>/"
+  width="100%"
+  height="800"
+  allow="fullscreen"
+  allowfullscreen>
+</iframe>
+```
+
+시작 페이지의 상단 전체화면 버튼은 브라우저 Fullscreen API를 사용합니다. `allow="fullscreen"`은 Confluence가 생성하는 iframe에 지정되어야 하며, Docusaurus 사이트에서 이 권한을 강제로 추가하거나 우회할 수 없습니다.
 
 - 전체화면 진입 시 우측 상단에 고정 닫기 버튼을 표시합니다.
 - `Esc` 키로도 종료할 수 있습니다.
@@ -75,8 +87,6 @@ GitHub Pages 배포 주소를 Confluence의 iFrame 매크로에 지정할 수 �
 | `npm run build` | 일반 프로덕션 빌드 |
 | `npm run build:pages` | GitHub Pages 빌드 |
 | `npm run serve` | 빌드 결과 로컬 제공 |
-| `npm run build:confluence` | Confluence 변환 결과 생성 |
-| `npm run preview:confluence` | Confluence 변환 미리보기 실행 |
 
 ## 디렉터리
 
@@ -84,7 +94,5 @@ GitHub Pages 배포 주소를 Confluence의 iFrame 매크로에 지정할 수 �
 docs/                  Markdown 및 MDX 문서
 src/                   테마와 공통 컴포넌트
 static/                정적 파일
-scripts/confluence/    Confluence 변환 도구
 build/                 Docusaurus 빌드 결과
-confluence-build/      Confluence 변환 결과
 ```

@@ -9,8 +9,6 @@
     "serve": "docusaurus serve",
     "typecheck": "tsc",
     "debug": "node --inspect ./node_modules/@docusaurus/core/bin/docusaurus.mjs start",
-    "build:confluence": "node scripts/confluence/build.mjs",
-    "preview:confluence": "node scripts/confluence/serve.mjs",
     "build:pages": "docusaurus build"
   },
   "dependencies": {

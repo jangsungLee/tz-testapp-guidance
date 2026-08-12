@@ -6,9 +6,6 @@ node_modules/
 .cache-loader/
 build/
 
-# Confluence conversion output
-confluence-build/
-
 # Local environment and secrets
 .env
 .env.*
@@ -24,7 +21,6 @@ coverage/
 
 # Local working files
 screenshot/
-create-confluence-payload.txt
 
 # Editor and operating-system files
 .idea/
