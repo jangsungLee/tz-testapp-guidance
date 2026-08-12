@@ -1,0 +1,176 @@
+Docusaurus 문서 디자인 템플릿 분리 작업
+========================================
+
+상태
+----
+- 현재는 작업하지 않는다.
+- 사용자가 이 TODO의 구현을 명시적으로 요청했을 때만 시작한다.
+- 이 파일은 이전 대화나 별도 설명 없이도 작업할 수 있는 독립 작업 명세다.
+
+목표
+----
+현재 저장소의 Markdown 문서 내용은 제외하고, Docusaurus 디자인과 배포 기반만 다른 문서 프로젝트에서도 재사용할 수 있는 템플릿으로 분리한다.
+
+완성된 템플릿 사용자는 다음 항목만 교체하여 새 문서 사이트를 만들 수 있어야 한다.
+
+1. 프로젝트명과 설명
+2. 브랜드 색상
+3. 로고와 favicon
+4. GitHub 저장소 정보
+5. docs 디렉터리의 Markdown/MDX 문서
+
+현재 프로젝트에서 재사용할 대상
+-----------------------------
+- src/css/custom.css
+  - 라이트/다크 모드 디자인 토큰
+  - 내비게이션, 사이드바, 본문, 표, 코드 블록, 페이지 이동 UI
+- src/theme/DocCategoryGeneratedIndexPage/
+  - 카테고리 인덱스 헤더와 선형 문서 목록 레이아웃
+- src/theme/DocCardList/
+  - Docusaurus 기본 카드 대신 사용하는 번호형 선형 목록
+- src/theme/Root/
+  - 전역 UI 컴포넌트 연결
+- src/components/FullscreenControl/
+  - 우측 상단 Fullscreen API 버튼
+  - 전체화면 종료 버튼과 권한 오류 안내
+- src/components/ScrollProgress/
+  - 우측 브라우저 스크롤바 대신 사용하는 상단 읽기 진행률
+- docusaurus.config.ts
+  - GitHub Pages의 owner/repository에 따른 url과 baseUrl 자동 계산
+- sidebars.ts
+- .github/workflows/deploy-pages.yml
+- package.json
+- tsconfig.json
+
+템플릿에서 제외하거나 일반화할 대상
+---------------------------------
+- docs/의 AM TZ 업무 문서 내용은 복사하지 않는다.
+- AM TZ, YAML Manual 등 제품 및 프로젝트 고유 문구를 제거한다.
+- static/img의 현재 로고와 favicon은 중립적인 placeholder로 교체한다.
+- footer의 회사명과 내부 문서 문구를 설정값으로 옮긴다.
+- src/components/ValidationMode는 현재 문서 전용이므로 기본 템플릿에서 제외한다.
+- 특정 GitHub owner, repository, Pages URL을 하드코딩하지 않는다.
+- Confluence 변환 빌드와 API 업로드 기능은 포함하지 않는다.
+- Confluence는 GitHub Pages URL 임베드 사용법만 README에 설명한다.
+
+권장 결과 구조
+---------------
+별도 템플릿 저장소 또는 사용자가 지정한 새 디렉터리에 생성한다. 현재 저장소를 템플릿으로 직접 변환하지 않는다.
+
+예시:
+
+  docs/
+    intro.md
+  src/
+    components/
+      FullscreenControl/
+      ScrollProgress/
+    css/
+      custom.css
+      tokens.css
+    theme/
+      DocCardList/
+      DocCategoryGeneratedIndexPage/
+      Root/
+  static/img/
+    favicon.svg
+    logo.svg
+  .github/workflows/
+    deploy-pages.yml
+  docusaurus.config.ts
+  sidebars.ts
+  package.json
+  tsconfig.json
+  README.md
+
+설정 분리 요구사항
+------------------
+다음 값은 한 곳에서 쉽게 변경할 수 있도록 구성한다. docusaurus.config.ts 상단의 명확한 상수 객체 또는 별도의 site.config.ts를 사용할 수 있다.
+
+- 사이트 제목
+- navbar 제목
+- 사이트 설명/tagline
+- 로고와 favicon 경로
+- footer 문구
+- 기본 언어
+- GitHub Pages URL/baseUrl 재정의 환경 변수
+
+색상은 src/css/tokens.css 또는 custom.css 상단의 CSS 변수에 모은다.
+
+- primary 색상과 단계별 변형
+- 배경 및 surface 색상
+- 본문과 제목 색상
+- border, muted, soft 색상
+- 코드 블록 배경
+- 라이트/다크 모드 값
+
+기능 요구사항
+-------------
+1. 카테고리 generated-index 페이지는 Docusaurus 기본 박스 카드가 아니라 현재 번호형 선형 목록을 사용한다.
+2. 전체화면 버튼은 모든 문서 페이지의 우측 상단에서 색상 모드 버튼 옆에 표시한다.
+3. Fullscreen API 실패 시 새 탭에서 열 수 있는 안내를 제공한다.
+4. 전체화면 상태에서는 고정된 닫기 버튼을 항상 표시한다.
+5. 페이지의 기본 우측 세로 스크롤바는 숨기되 휠, 터치, 키보드 스크롤은 유지한다.
+6. 화면 최상단에 0~100% 읽기 진행 바와 퍼센트 숫자를 표시한다.
+7. 사이드바, 표, 코드 블록처럼 별도 overflow가 필요한 요소의 내부 스크롤은 숨기지 않는다.
+8. 라이트 모드와 다크 모드를 모두 지원한다.
+9. 모바일 내비게이션과 좁은 화면에서 레이아웃이 깨지지 않아야 한다.
+10. GitHub Pages 프로젝트 사이트와 <owner>.github.io 사용자 사이트를 모두 지원한다.
+
+README에 포함할 내용
+--------------------
+- Node.js 요구 버전과 npm 설치/실행 방법
+- 프로젝트명, 색상, 로고, 문서를 교체하는 위치
+- npm run start, typecheck, build, build:pages, serve 명령 설명
+- GitHub Settings > Pages > Source를 GitHub Actions로 설정하는 절차
+- GitHub Pages 주소 규칙
+- Confluence에 Pages URL을 임베드하는 방법
+- iframe을 직접 구성할 수 있는 경우 allow="fullscreen" 및 allowfullscreen이 필요하다는 설명
+- iframe 전체화면 권한은 호스트 페이지가 허용해야 하며 내부 사이트가 우회할 수 없다는 설명
+
+구현 순서
+---------
+1. 작업 시작 전에 git status를 확인하고 사용자 변경을 보존한다.
+2. 사용자가 템플릿을 만들 위치와 저장소 이름을 지정했는지 확인한다.
+3. 지정이 없다면 현재 저장소 내부에 임의로 생성하지 말고 위치를 질문한다.
+4. 현재 디자인 파일을 복사하되 업무 문서와 고유 명칭을 제외한다.
+5. 사이트 메타데이터와 색상 토큰을 설정 영역으로 분리한다.
+6. 최소 예제 문서와 최소 카테고리를 만들어 테마 동작을 확인한다.
+7. README와 GitHub Pages workflow를 추가한다.
+8. 타입 검사와 일반 빌드, Pages 환경을 모사한 빌드를 실행한다.
+9. 생성된 HTML에서 카테고리가 구형 cardContainer가 아닌 커스텀 목록으로 출력되는지 확인한다.
+10. 생성된 HTML에 잘못된 p 중첩 등 hydration 문제가 없는지 확인한다.
+11. 가능하면 로컬 브라우저에서 데스크톱, 모바일, 라이트/다크, 전체화면, 진행률을 확인한다.
+
+검증 명령 예시
+--------------
+  npm ci
+  npm run typecheck
+  npm run build
+
+PowerShell에서 GitHub Pages 프로젝트 사이트 빌드를 모사하는 예시:
+
+  $env:GITHUB_REPOSITORY = "example/example-docs"
+  npm run build:pages
+  Remove-Item Env:GITHUB_REPOSITORY
+
+완료 조건
+---------
+- 새 템플릿에 현재 AM TZ 문서 내용과 고유 명칭이 남아 있지 않다.
+- 설정, 색상, 로고, docs 교체만으로 다른 프로젝트에 적용할 수 있다.
+- npm ci가 성공한다.
+- npm run typecheck가 성공한다.
+- npm run build가 성공한다.
+- GitHub Pages baseUrl을 적용한 npm run build:pages가 성공한다.
+- 모든 카테고리 페이지가 커스텀 선형 목록을 사용한다.
+- React hydration 및 validateDOMNesting 오류가 없다.
+- 전체화면과 상단 읽기 진행률이 정상 동작한다.
+- README만 읽어도 로컬 실행과 Pages 배포가 가능하다.
+
+주의사항
+--------
+- 현재 저장소의 docs 문서나 사용자 변경을 삭제하거나 이동하지 않는다.
+- 현재 저장소의 디자인을 수정하는 작업과 템플릿 분리를 섞지 않는다.
+- 템플릿 목적지와 이름이 불명확하면 새 저장소 생성이나 외부 push를 하지 않는다.
+- GitHub 저장소 생성, push, Pages 활성화 같은 외부 변경은 사용자의 명시적 요청 후 수행한다.
+- iframe의 allow="fullscreen" 속성은 Confluence 등 부모 서비스가 생성하는 iframe에 필요하다. 자식 Docusaurus 코드만으로 추가하거나 권한을 우회할 수 없다.

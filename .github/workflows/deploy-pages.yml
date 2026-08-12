@@ -56,3 +56,17 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Print Confluence embed URL
+        id: confluence-url
+        shell: bash
+        run: |
+          epoch="$(date +%s)"
+          page_url="${{ steps.deployment.outputs.page_url }}"
+          embed_url="${page_url}?v=${epoch}"
+
+          echo "url=${embed_url}" >> "${GITHUB_OUTPUT}"
+          echo "::notice title=Confluence embed URL::${embed_url}"
+          printf '## Confluence embed URL\n\n[%s](%s)\n\n```text\n%s\n```\n' \
+            "${embed_url}" "${embed_url}" "${embed_url}" \
+            >> "${GITHUB_STEP_SUMMARY}"
