@@ -3,6 +3,7 @@ import {useHistory} from '@docusaurus/router';
 import useGlobalData from '@docusaurus/useGlobalData';
 import MiniSearch from 'minisearch';
 import type {SearchDocument} from '../../../plugins/localSmartSearch';
+import {scoreIdentifierMatch} from '../../search/identifierSearch';
 import styles from './styles.module.css';
 
 type SearchResult = Pick<SearchDocument, 'title' | 'pageTitle' | 'path' | 'api' | 'action' | 'kind'> & {
@@ -11,7 +12,7 @@ type SearchResult = Pick<SearchDocument, 'title' | 'pageTitle' | 'path' | 'api' 
 };
 
 const searchOptions = {
-  boost: {api: 16, action: 13, aliases: 10, title: 7, pageTitle: 4, content: 1},
+  boost: {api: 16, action: 13, title: 7, pageTitle: 4, content: 1},
   prefix: (term: string) => term.length >= 2,
   fuzzy: (term: string) => (term.length >= 5 ? 0.2 : false),
   maxFuzzy: 1,
@@ -48,7 +49,7 @@ export default function SearchBar(): ReactNode {
 
   const search = useMemo(() => {
     const instance = new MiniSearch<SearchDocument>({
-      fields: ['api', 'action', 'aliases', 'title', 'pageTitle', 'content'],
+      fields: ['api', 'action', 'title', 'pageTitle', 'content'],
       storeFields: ['title', 'pageTitle', 'path', 'api', 'action', 'kind'],
       idField: 'id',
       searchOptions,
@@ -62,8 +63,28 @@ export default function SearchBar(): ReactNode {
     if (normalized.length < 2) {
       return [];
     }
-    return search.search(normalized, searchOptions).slice(0, 10) as unknown as SearchResult[];
-  }, [query, search]);
+    const fullTextResults = search.search(normalized, searchOptions) as unknown as SearchResult[];
+    const identifierResults = documents
+      .filter((document) => document.kind === 'api')
+      .map((document) => {
+        const score = Math.max(
+          scoreIdentifierMatch(normalized, document.api) ?? Number.NEGATIVE_INFINITY,
+          scoreIdentifierMatch(normalized, document.action) ?? Number.NEGATIVE_INFINITY,
+        );
+        return Number.isFinite(score) ? {...document, score: score * 12, terms: [normalized]} : null;
+      })
+      .filter((result): result is SearchDocument & {score: number; terms: string[]} => result !== null);
+    const merged = new Map<string, SearchResult>();
+
+    for (const result of [...fullTextResults, ...identifierResults]) {
+      const previous = merged.get(result.path);
+      if (!previous || result.score > previous.score) {
+        merged.set(result.path, result);
+      }
+    }
+
+    return [...merged.values()].sort((left, right) => right.score - left.score).slice(0, 10);
+  }, [documents, query, search]);
 
   const open = focused && query.trim().length >= 2;
 

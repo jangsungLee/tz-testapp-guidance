@@ -7,7 +7,7 @@ import {unified} from 'unified';
 import remarkGfm from 'remark-gfm';
 import remarkMdx from 'remark-mdx';
 import remarkParse from 'remark-parse';
-import {createIdentifierAliases, splitIdentifier} from '../../src/search/identifierAliases';
+import {splitIdentifier} from '../../src/search/identifierSearch';
 
 export type SearchDocument = {
   id: string;
@@ -16,7 +16,6 @@ export type SearchDocument = {
   path: string;
   api: string;
   action: string;
-  aliases: string;
   content: string;
   kind: 'api' | 'document';
 };
@@ -79,7 +78,6 @@ async function parseDocument(filePath: string, docsDir: string): Promise<SearchD
     const apiMatch = sectionTitle.match(/^([a-z][a-z0-9_]+)\s*\((?:…|\.\.\.)\)$/i);
     const api = apiMatch?.[1] ?? '';
     const action = api ? content.match(/\bACTION:\s*([A-Z][A-Z0-9_]*)/)?.[1] ?? '' : '';
-    const aliases = createIdentifierAliases(api, action).join(' ');
     const apiTerms = api ? [...splitIdentifier(api), api.replace(/_/g, '')].join(' ') : '';
     const actionTerms = action
       ? [...splitIdentifier(action), action.replace(/_/g, '').toLowerCase()].join(' ')
@@ -93,7 +91,6 @@ async function parseDocument(filePath: string, docsDir: string): Promise<SearchD
         path: sectionPath,
         api: `${api} ${apiTerms}`.trim(),
         action: `${action} ${actionTerms}`.trim(),
-        aliases,
         content,
         kind: api ? 'api' : 'document',
       });
