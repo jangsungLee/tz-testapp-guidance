@@ -1,0 +1,8 @@
+{
+  "label": "예제",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "복사하여 수정할 수 있는 YAML 예제를 제공합니다."
+  }
+}

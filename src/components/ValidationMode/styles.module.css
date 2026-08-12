@@ -1,0 +1,12 @@
+.card {
+  background: var(--manual-card-background);
+  border: 1px solid var(--manual-card-border);
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 3px;
+  margin: 1.15rem 0;
+  padding: 1.15rem 1.25rem 1.25rem;
+}
+.card h3 { font-size: 1rem; letter-spacing: -.02em; margin: 0 0 .2rem; }
+.card header p { color: var(--doc-muted); font-size: .86rem; line-height: 1.6; margin-bottom: 1rem; }
+.card > div > :last-child { margin-bottom: 0; }
+.card :global(.theme-code-block) { margin-bottom: .65rem; margin-top: 0; }
