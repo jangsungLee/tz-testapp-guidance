@@ -1,5 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState, type ReactNode} from 'react';
 import {useHistory} from '@docusaurus/router';
+import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
 import {usePluginData} from '@docusaurus/useGlobalData';
 import MiniSearch from 'minisearch';
 import type {SearchDocument} from '../../../plugins/localSmartSearch';
@@ -33,6 +34,7 @@ function normalizeQuery(value: string): string {
 
 export default function SearchBar(): ReactNode {
   const history = useHistory();
+  const {withBaseUrl} = useBaseUrlUtils();
   const inputRef = useRef<HTMLInputElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const pluginData = usePluginData('local-smart-search', 'default', {failfast: true}) as {
@@ -112,9 +114,9 @@ export default function SearchBar(): ReactNode {
     (path: string) => {
       setFocused(false);
       setQuery('');
-      history.push(path);
+      history.push(withBaseUrl(path));
     },
-    [history],
+    [history, withBaseUrl],
   );
 
   useEffect(() => {
