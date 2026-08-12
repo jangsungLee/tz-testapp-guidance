@@ -32,9 +32,14 @@ export default function FullscreenControl(): ReactNode {
     return () => document.removeEventListener('fullscreenchange', handleChange);
   }, []);
 
-  async function enterFullscreen(): Promise<void> {
+  async function toggleFullscreen(): Promise<void> {
     setError(false);
     try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+        return;
+      }
+
       if (!document.fullscreenEnabled) throw new Error('Fullscreen disabled');
       await document.documentElement.requestFullscreen();
     } catch {
@@ -42,40 +47,30 @@ export default function FullscreenControl(): ReactNode {
     }
   }
 
-  async function exitFullscreen(): Promise<void> {
-    if (document.fullscreenElement) await document.exitFullscreen();
-  }
-
   return (
     <>
       {navbarHost &&
         createPortal(
           <button
-            aria-label="전체화면으로 보기"
-            className={styles.trigger}
-            onClick={enterFullscreen}
-            title="전체화면으로 보기"
+            aria-label={isFullscreen ? '전체화면 종료' : '전체화면으로 보기'}
+            aria-pressed={isFullscreen}
+            className={
+              isFullscreen
+                ? `${styles.trigger} ${styles.triggerActive}`
+                : styles.trigger
+            }
+            onClick={toggleFullscreen}
+            title={isFullscreen ? '전체화면 종료' : '전체화면으로 보기'}
             type="button">
             <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="m9 9-6-6m0 0v5m0-5h5M15 9l6-6m0 0h-5m5 0v5M9 15l-6 6m0 0h5m-5 0v-5M15 15l6 6m0 0v-5m0 5h-5" />
+              {isFullscreen ? (
+                <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7" />
+              ) : (
+                <path d="m9 9-6-6m0 0v5m0-5h5M15 9l6-6m0 0h-5m5 0v5M9 15l-6 6m0 0h5m-5 0v-5M15 15l6 6m0 0v-5m0 5h-5" />
+              )}
             </svg>
           </button>,
           navbarHost,
-        )}
-
-      {isFullscreen &&
-        createPortal(
-          <button
-            aria-label="전체화면 닫기"
-            className={styles.close}
-            onClick={exitFullscreen}
-            type="button">
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="m6 6 12 12M18 6 6 18" />
-            </svg>
-            <span>닫기</span>
-          </button>,
-          document.body,
         )}
 
       {error &&

@@ -21,6 +21,11 @@
   --doc-border: #dedbd3;
   --doc-muted: #66706c;
   --doc-soft: #f0eee8;
+  --category-index-background: #f7f7f5;
+  --category-index-hover: #eeeeeb;
+  --category-number-background: #252b29;
+  --category-number-border: #252b29;
+  --category-number-color: #fff;
   --yaml-key-color: #896724;
   --yaml-value-color: #746f66;
   --manual-card-border: #cfd6d2;
@@ -44,6 +49,11 @@
   --doc-border: #34413d;
   --doc-muted: #9daba6;
   --doc-soft: #1d2825;
+  --category-index-background: #151c1a;
+  --category-index-hover: #1c2522;
+  --category-number-background: #dfe4e1;
+  --category-number-border: #dfe4e1;
+  --category-number-color: #18201d;
   --yaml-key-color: #c4b9fe;
   --yaml-value-color: #aaa4b8;
   --manual-card-border: #3b4b46;

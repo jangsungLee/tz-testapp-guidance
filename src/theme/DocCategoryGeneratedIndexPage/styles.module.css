@@ -4,7 +4,7 @@
 
 .header {
   border-bottom: 1px solid var(--doc-border);
-  margin: 1.3rem 0 2rem;
+  margin: 1.3rem 0 1.4rem;
   padding: 1.2rem 0 2rem;
 }
 
@@ -43,6 +43,7 @@
 
 .index {
   margin: 0;
+  padding-top: 0.6rem;
 }
 
 .footer {

@@ -23,14 +23,17 @@
   color: var(--ifm-navbar-link-hover-color);
 }
 
-.trigger:focus-visible,
-.close:focus-visible {
+.triggerActive {
+  background: var(--doc-soft);
+  color: var(--ifm-color-primary);
+}
+
+.trigger:focus-visible {
   outline: 2px solid var(--ifm-color-primary);
   outline-offset: 2px;
 }
 
-.trigger svg,
-.close svg {
+.trigger svg {
   fill: none;
   height: 1.15rem;
   stroke: currentColor;
@@ -38,25 +41,6 @@
   stroke-linejoin: round;
   stroke-width: 1.8;
   width: 1.15rem;
-}
-
-.close {
-  align-items: center;
-  background: var(--ifm-background-color);
-  border: 1px solid var(--doc-border-strong, var(--doc-border));
-  border-radius: 3px;
-  box-shadow: 0 5px 18px rgb(0 0 0 / 18%);
-  color: var(--ifm-font-color-base);
-  cursor: pointer;
-  display: flex;
-  font-size: 0.78rem;
-  font-weight: 700;
-  gap: 0.4rem;
-  padding: 0.55rem 0.7rem;
-  position: fixed;
-  right: 1rem;
-  top: 1rem;
-  z-index: 10000;
 }
 
 .error {
